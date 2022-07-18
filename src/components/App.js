@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 class App extends React.Component {
   state = { videos: [] };
 
-  onTermSubmit = async (term) => {
+  onTermSubmit = async term => {
   // params property in request config is per https://axios-http.com/docs/req_config
   // the config object of the request is merged with the config object of axis instance
   // i.e. the second arg of call to axios.create from unsplash.js
@@ -12,13 +12,15 @@ class App extends React.Component {
       // q was from https://developers.google.com/youtube/v3/docs/search/list
       params: { q: term },
     });
-    console.log(response);
+    console.log(response.data.items);
+    this.setState({videos: response.data.items});
   };
 
   render() {
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onTermSubmit} />
+        I have {this.state.videos.length} videos.
       </div>
     );
   }
