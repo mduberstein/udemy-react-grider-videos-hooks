@@ -3,7 +3,11 @@ import youtube from "../apis/youtube";
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
 class App extends React.Component {
-  state = { videos: [] };
+  state = { videos: [], selectedVideo: null };
+
+  onVideoSelect = (video) => {
+    console.log('From the App', video);
+  }
 
   onTermSubmit = async term => {
   // params property in request config is per https://axios-http.com/docs/req_config
@@ -21,7 +25,7 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onTermSubmit} />
-        <VideoList videos={this.state.videos} />
+        <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
       </div>
     );
   }
