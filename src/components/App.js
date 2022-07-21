@@ -8,7 +8,7 @@ class App extends React.Component {
 
   onVideoSelect = (video) => {
     this.setState({selectedVideo: video});
-    console.log('From the App', video);
+    // console.log('From the App', video);
   }
 
   onTermSubmit = async term => {
@@ -19,7 +19,7 @@ class App extends React.Component {
       // q was from https://developers.google.com/youtube/v3/docs/search/list
       params: { q: term },
     });
-    console.log(response.data.items);
+    // console.log(response.data.items);
     this.setState({videos: response.data.items});
   };
 
