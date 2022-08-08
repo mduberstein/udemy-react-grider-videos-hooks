@@ -6,7 +6,7 @@ const useVideos = (defaultSearchTerm) => {
  
   useEffect(() => {
     search(defaultSearchTerm);
-  }, []);
+  }, [defaultSearchTerm]);
   const search = async (term) => {
     // params property in request config is per https://axios-http.com/docs/req_config
     // the config object of the request is merged with the config object of axis instance
