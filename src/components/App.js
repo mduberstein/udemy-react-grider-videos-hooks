@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import youtube from "../apis/youtube";
 import SearchBar from "./SearchBar";
 import VideoList from "./VideoList";
@@ -9,10 +9,10 @@ const App = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
 
   useEffect(() => {
-    onTermSubmit('buildings');
+    onTermSubmit("buildings");
   }, []);
 
-  const onTermSubmit = async term => {
+  const onTermSubmit = async (term) => {
     // params property in request config is per https://axios-http.com/docs/req_config
     // the config object of the request is merged with the config object of axis instance
     // i.e. the second arg of call to axios.create from youtube.js
@@ -25,10 +25,6 @@ const App = () => {
     setSelectedVideo(response.data.items[0]);
   };
 
-  const onVideoSelect = (video) => {
-    setSelectedVideo(video);
-  }
-
   return (
     <div className="ui container">
       <SearchBar onFormSubmit={onTermSubmit} />
@@ -38,7 +34,7 @@ const App = () => {
             <VideoDetail video={selectedVideo} />
           </div>
           <div className="five wide column">
-            <VideoList onVideoSelect={onVideoSelect} videos={videos} />
+            <VideoList onVideoSelect={setSelectedVideo} videos={videos} />
           </div>
         </div>
       </div>
